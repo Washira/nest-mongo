@@ -94,3 +94,34 @@ erDiagram
     SERVICE }|--|{ DATABASE : interacts-with
 ```
 
+## Directory Structure
+
+เมื่อสร้างโปรเจค NestJS จะได้โครงสร้างไฟล์ดังนี้
+
+```bash
+├── nest-cli.json
+├── package-lock.json
+├── package.json
+├── src
+│   ├── app.controller.spec.ts
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   └── main.ts
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+└── tsconfig.json
+```
+
+การสร้างโครงสร้างไฟล์เพิ่มเติม
+
+เราสามารถสร้างไฟล์โดยใช้คำสั่ง nest generate โดยตัวอย่างเช่น
+
+```bash
+nest generate controller <name>
+nest generate service <name>
+nest generate module <name>
+nest generate provider <name>
+```
