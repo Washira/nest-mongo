@@ -71,3 +71,26 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## ER Diagram
+
+```mermaid
+erDiagram
+    MODULE {
+        name string
+        imports string[]
+        controller string[]
+        providers string[]
+        exports string[]
+    }
+
+    APPLICATION ||--o{ MODULE : contains
+    MODULE ||--o{ MODULE : imports
+    MODULE ||--o{ CONTROLLER : defines
+    CONTROLLER ||--o{ SERVICE : uses
+    SERVICE ||--|| PROVIDER : implements
+    SERVICE ||--|| PROVIDER : implements
+    MODULE ||--|{ PROVIDER : provides
+    SERVICE }|--|{ DATABASE : interacts-with
+```
+
