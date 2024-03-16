@@ -22,6 +22,18 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+
+- [Description](#description)
+- [Installation](#installation)
+- [Running the app](#running-the-app)
+- [Test](#test)
+- [Support](#support)
+- [Stay in touch](#stay-in-touch)
+- [License](#license)
+- [ER Diagram](#er-diagram)
+- [Directory Structure](#directory-structure)
+- [Mongo](#mongo)
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
@@ -117,11 +129,74 @@ erDiagram
 
 การสร้างโครงสร้างไฟล์เพิ่มเติม
 
-เราสามารถสร้างไฟล์โดยใช้คำสั่ง nest generate โดยตัวอย่างเช่น
+เราสามารถสร้างไฟล์โดยใช้คำสั่ง `nest generate` หรือ `nest g` โดยตัวอย่างเช่น
 
 ```bash
 nest generate controller <name>
 nest generate service <name>
 nest generate module <name>
 nest generate provider <name>
+```
+
+หรือต้องการสร้างทีเดียว ได้ไฟล์ทั้งหมด เรียกว่าการสร้าง CRUD resource 
+โดยใช้คำสั่ง `nest generate resource` หรือ `nest g resource` โดยตัวอย่างเช่น
+
+```bash
+nest g resource <name>
+```
+
+## Mongo
+
+ติดตั้ง mongoose
+
+```bash
+npm i @nestjs/mongoose mongoose
+```
+
+เพิ่ม `docker-compose.yml` สำหรับ MongoDB
+
+```bash
+touch docker-compose.yml
+```
+
+คำสั่งในการ execute docker-compose.yml
+
+```bash
+docker-compose up -d
+```
+
+คำสั่งในการ stop docker-compose.yml
+
+```bash
+docker-compose down
+```
+
+คำสั่งในการเช็ค container ที่กำลังทำงาน
+
+```bash
+docker ps
+```
+
+คำสั่งในการเช็ค container ที่เคยทำงาน
+
+```bash
+docker ps -a
+```
+
+คำสั่งในการเข้า container
+
+```bash
+docker exec -it <container_id> bash
+```
+
+คำสั่งในการเข้า mongo shell
+
+```bash
+mongosh -u <username> -p <password>
+```
+
+คำสั่งในการออกจาก mongo shell หรือ container
+
+```bash
+exit
 ```
