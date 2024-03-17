@@ -14,6 +14,7 @@
     - [Schema](#schema)
     - [Add into `products.module.ts`](#add-into-productsmodulets)
     - [Add into `products.service.ts`](#add-into-productsservicets)
+  - [Validation](#validation)
 
 ## Description
 
@@ -339,3 +340,72 @@ export const ProductSchema = SchemaFactory.createForClass(Product);
 ```
 
 ก็ถือว่าการติดตั้ง Mongoose ใน CRUD สำเร็จแล้ว
+
+## Validation
+
+ในบางครั้งที่เราอาจจะส่ง request body ที่ไม่ถูกต้อง ซึ่งอาจจะทำให้เกิด error ในการบันทึกข้อมูลลงใน database
+และเมื่อเกิด error จะได้ response กลับไปว่า Internal server error ประมาณนี้
+
+```json
+{
+  "statusCode": 500,
+  "message": "Internal server error"
+}
+```
+
+ปัญหาคือ เราไม่ทราบว่า field ไหนที่ส่งข้อมูลไม่ถูกต้อง ถ้าเราต้องการรายละเอียดของ error จะต้องทำการ validate request body ก่อน
+
+เราสามารถใช้ `class-validator` ในการ validate request body ของ create product
+
+ติดตั้ง `class-validator` และ `class-transformer`
+
+```bash
+npm i class-validator class-transformer
+```
+
+เพิ่ม `class-validator` ใน `create-product.dto.ts`
+
+```typescript
++ import { IsString, IsNumber, IsOptional, IsNotEmpty } from 'class-validator';
+
+  export class CreateProductDto {
++   @IsNotEmpty()
++   @IsString()
+    readonly name: string;
+
++   @IsOptional()
++   @IsString()
+    readonly description?: string;
+
++   @IsNotEmpty()
++   @IsNumber()
+    readonly price: number;
+  }
+```
+
+แต่ `class-validator` ไม่ได้มากับ `Nest.js` จึงต้องเพิ่ม `class-validator` ใน `main.ts` ด้วย
+
+```typescript
++ import { ValidationPipe } from '@nestjs/common';
+  import { NestFactory } from '@nestjs/core';
+  import { AppModule } from './app.module';
+
+  async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
++   app.useGlobalPipes(new ValidationPipe());
+    await app.listen(3000);
+  }
+  bootstrap();
+```
+
+เมื่อลอง request POST หรือ PATCH ผ่าน Postman ด้วย request body `price` ที่ไม่ถูกต้อง จะได้ response ประมาณนี้
+
+```json
+{
+  "message": [
+      "price must be a number conforming to the specified constraints"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}
+```
