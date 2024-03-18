@@ -16,6 +16,7 @@
     - [Add into `products.service.ts`](#add-into-productsservicets)
   - [Validation](#validation)
   - [Use more than one model](#use-more-than-one-model)
+  - [Using `product` service from `order` service](#using-product-service-from-order-service)
 
 ## Description
 
@@ -434,4 +435,26 @@ export class CreateOrderDto {
 }
 ```
 
+เพิ่ม `Order` และ `OrderSchema` ใน `products.module.ts`
+
+```typescript
+...
++ import { Order, OrderSchema } from './schemas/order.schema';
+
+  @Module({
+    imports: [
++     MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
+    ],
+  ...
+})
+...
+```
+
+เพิ่มเหมือนกันกับตอนที่ทำ `Product` ทุกอย่าง
+
+แล้วก็ตั้งค่า controller และ service ของ `Order` โดยใช้แบบตาม `Product` ก็จะได้ CRUD ของ `Order` แล้ว
+
+## Using `product` service from `order` service
+
+เราสามารถใช้งาน service ของ `Product` จาก `Order` ได้
 
