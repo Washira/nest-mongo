@@ -58,7 +58,7 @@
 </details>
 
 <details>
-  <summary>Test</summary>
+  <summary><b>Test</b></summary>
   <figure class="highlight">
   <pre>
 
@@ -79,7 +79,7 @@
 </details>
 
 <details>
-  <summary>Support</summary>
+  <summary><b>Support</b></summary>
   <figure class="highlight">
   <pre>
 
