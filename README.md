@@ -19,11 +19,15 @@
   - [Using `Product` service from `Order` service](#using-product-service-from-order-service)
 
 <details>
-<summary>Description</summary>
+<summary><b>Description</b></summary>
+<figure class="highlight">
+<pre>
 
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+</pre>
+</figure>
 </details>
 
 <details>
