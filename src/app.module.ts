@@ -4,11 +4,19 @@ import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OrdersModule } from './orders/orders.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }), // load .env file
+    MongooseModule.forRoot('mongodb://localhost:27017', {
+      user: process.env.DATABASE_USER,
+      pass: process.env.DATABASE_PASSWORD,
+      dbName: process.env.DATABASE_NAME,
+    }), // connect to the database
     ProductsModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/toupawa'),
     OrdersModule,
   ],
   controllers: [AppController],
