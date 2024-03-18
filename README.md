@@ -16,7 +16,7 @@
     - [Add into `products.service.ts`](#add-into-productsservicets)
   - [Validation](#validation)
   - [Use more than one model](#use-more-than-one-model)
-  - [Using `product` service from `order` service](#using-product-service-from-order-service)
+  - [Using `Product` service from `Order` service](#using-product-service-from-order-service)
 
 ## Description
 
@@ -454,7 +454,72 @@ export class CreateOrderDto {
 
 แล้วก็ตั้งค่า controller และ service ของ `Order` โดยใช้แบบตาม `Product` ก็จะได้ CRUD ของ `Order` แล้ว
 
-## Using `product` service from `order` service
+การสร้าง `Order` จะใช้ `productId` ของ `Product` ที่มีอยู่แล้ว และ `quantity` ที่ต้องการสั่งซื้อ เป็นการเรียกข้อมูลจาก `Product` มาใช้งานใน `Order`
 
-เราสามารถใช้งาน service ของ `Product` จาก `Order` ได้
+## Using `Product` service from `Order` service
 
+ต่อมา เราจะปรับปรุง `Order` service ให้เช็ค `productId` ว่ามีอยู่จริงใน `Product` หรือไม่ ถ้าไม่ ให้ส่ง error กลับไปว่า `Product not found`
+
+เราสามารถใช้งาน service ของ `Product` จาก `Order` ได้ เพื่อเรียก method ของ `Product` มาใช้งานใน `Order`
+
+เริ่มต้นจาก การ export `ProductService` ใน `products.module.ts`
+
+```typescript
+...
+    @Module({
+      ...
+      exports: [ProductsService],
+    })
+```
+
+จากนั้น ใน `orders.module.ts` ให้ import `ProductsModule`
+
+```typescript
+  ...
++ import { ProductsModule } from '../products/products.module';
+
+  @Module({
+    imports: [
+      ...
++     ProductsModule,
+    ],
+  ...
+})
+```
+เป็นการ import module สู่ module อื่น เป็นการใช้ประโยชน์จากการใช้งาน module ใน NestJS
+ที่ import เข้ามาทั้ง module เพื่อให้ `Order` service สามารถใช้งาน `Product` service ได้ โดยไม่ต้อง import `ProductService`, `ProductModel` หรืออื่นๆ แยกกัน
+
+ต่อมา ใน `orders.service.ts` ให้ import `ProductsService` และใช้งาน method ของ `ProductsService` ในการเช็ค `productId` ว่ามีอยู่จริงใน `Product` หรือไม่
+
+```typescript
+  ...
++ import { ProductsService } from '../products/products.service';
+
+  @Injectable()
+  export class OrdersService {
+    constructor(
+      @InjectModel(Order.name) private orderModel: Model<OrderDocument>,
++     private productsService: ProductsService,
+    ) {}
+
+    async create(createOrderDto: CreateOrderDto): Promise<Order> {
++     const product = await this.productsService.findOne(createOrderDto.productId);
++     if (!product) {
++       throw new NotFoundException('Product not found');
++     }
+      const createdOrder = new this.orderModel(createOrderDto);
+      return createdOrder.save();
+    }
+    ...
+  }
+```
+
+เมื่อลอง request POST หรือ PATCH ผ่าน Postman ด้วย `productId` ที่ไม่มีอยู่จริง จะได้ response ประมาณนี้
+
+```json
+{
+  "statusCode": 404,
+  "message": "Product not found",
+  "error": "Not Found"
+}
+```
