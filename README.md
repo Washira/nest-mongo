@@ -18,9 +18,13 @@
   - [Use more than one model](#use-more-than-one-model)
   - [Using `Product` service from `Order` service](#using-product-service-from-order-service)
 
+<details>
+<summary>Description</summary>
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+</details>
 
 ## Installation
 
