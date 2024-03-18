@@ -6,7 +6,7 @@ export type OrderDocument = Order & Document;
 @Schema()
 export class Order {
   @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
-  productId: string;
+  productId: Types.ObjectId; // ref to Product
 
   @Prop({ required: true })
   quantity: number;
