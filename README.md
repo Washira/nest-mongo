@@ -19,63 +19,75 @@
   - [Using `Product` service from `Order` service](#using-product-service-from-order-service)
 
 <details>
-<summary><b>Description</b></summary>
-<figure class="highlight">
-<pre>
+  <summary><b>Description</b></summary>
+  <figure class="highlight">
+  <pre>
 
-## Description
+  ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-</pre>
-</figure>
+  [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  </pre>
+  </figure>
 </details>
 
 <details>
-<summary>Installation</summary>
+  <summary><b>Installation</b></summary>
+  <figure class="highlight">
+  <pre>
 
-## Installation
+  ## Installation
 
-```bash
-$ npm install
-```
+  ```bash
+  $ npm install
+  ```
 
-## Running the app
+  ## Running the app
 
-```bash
-# development
-$ npm run start
+  ```bash
+  # development
+  $ npm run start
 
-# watch mode
-$ npm run start:dev
+  # watch mode
+  $ npm run start:dev
 
-# production mode
-$ npm run start:prod
-```
+  # production mode
+  $ npm run start:prod
+  ```
+  </pre>
+  </figure>
 </details>
 
 <details>
-<summary>Test</summary>
+  <summary>Test</summary>
+  <figure class="highlight">
+  <pre>
 
-## Test
+  ## Test
 
-```bash
-# unit tests
-$ npm run test
+  ```bash
+  # unit tests
+  $ npm run test
 
-# e2e tests
-$ npm run test:e2e
+  # e2e tests
+  $ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+  # test coverage
+  $ npm run test:cov
+  ```
+  </pre>
+  </figure>
 </details>
 
 <details>
-<summary>Support</summary>
+  <summary>Support</summary>
+  <figure class="highlight">
+  <pre>
 
-## Support
+  ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  </pre>
+  </figure>
 </details>
 
 ## ER Diagram
