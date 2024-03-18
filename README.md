@@ -15,6 +15,7 @@
     - [Add into `products.module.ts`](#add-into-productsmodulets)
     - [Add into `products.service.ts`](#add-into-productsservicets)
   - [Validation](#validation)
+  - [Use more than one model](#use-more-than-one-model)
 
 ## Description
 
@@ -409,3 +410,28 @@ npm i class-validator class-transformer
   "statusCode": 400
 }
 ```
+## Use more than one model
+
+ในการใช้งานจริง มีโอกาสที่เราจะใช้งานมากกว่า 1 model ใน module เดียวกัน ได้
+
+ในที่นี้ ยกตัวอย่างการสร้างอีก 1 model คือ `Order` เพื่อทำงานร่วมกับ `Product`
+
+มีการสร้าง resource เหมือนกันตอนที่สร้าง `Product` แต่ `schemas` ของ `Order` จะมีแค่ `productId` และ `quantity` เท่านั้น
+
+ใน `order.dto.ts` ให้กำหนด object ที่ใช้เป็น request body สำหรับ create order
+
+```typescript
+import { IsNumber, IsNotEmpty, IsMongoId, Min } from 'class-validator';
+
+export class CreateOrderDto {
+  @IsMongoId()
+  @IsNotEmpty()
+  readonly productId: string;
+
+  @IsNumber()
+  @Min(1)
+  readonly quantity: number;
+}
+```
+
+
