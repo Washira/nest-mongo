@@ -18,45 +18,77 @@
   - [Use more than one model](#use-more-than-one-model)
   - [Using `Product` service from `Order` service](#using-product-service-from-order-service)
 
-## Description
+<details>
+  <summary><b>Description</b></summary>
+  <figure class="highlight">
+  <pre>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  ## Description
 
-## Installation
+  [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  </pre>
+  </figure>
+</details>
 
-```bash
-$ npm install
-```
+<details>
+  <summary><b>Installation</b></summary>
+  <figure class="highlight">
+  <pre>
 
-## Running the app
+  ## Installation
 
-```bash
-# development
-$ npm run start
+  ```bash
+  $ npm install
+  ```
 
-# watch mode
-$ npm run start:dev
+  ## Running the app
 
-# production mode
-$ npm run start:prod
-```
+  ```bash
+  # development
+  $ npm run start
 
-## Test
+  # watch mode
+  $ npm run start:dev
 
-```bash
-# unit tests
-$ npm run test
+  # production mode
+  $ npm run start:prod
+  ```
+  </pre>
+  </figure>
+</details>
 
-# e2e tests
-$ npm run test:e2e
+<details>
+  <summary><b>Test</b></summary>
+  <figure class="highlight">
+  <pre>
 
-# test coverage
-$ npm run test:cov
-```
+  ## Test
 
-## Support
+  ```bash
+  # unit tests
+  $ npm run test
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  # e2e tests
+  $ npm run test:e2e
+
+  # test coverage
+  $ npm run test:cov
+  ```
+  </pre>
+  </figure>
+</details>
+
+<details>
+  <summary><b>Support</b></summary>
+  <figure class="highlight">
+  <pre>
+
+  ## Support
+
+  Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  </pre>
+  </figure>
+</details>
 
 ## ER Diagram
 
