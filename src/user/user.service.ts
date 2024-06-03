@@ -12,11 +12,11 @@ export class UserService {
 
   async create(registerDto: RegisterDto): Promise<User> {
     const newUser = new this.userModel(registerDto);
-    return newUser.save();
+    return await newUser.save();
   }
 
-  async findByEmail(email: string): Promise<User> {
-    return this.userModel
+  async findByEmail(email: string): Promise<UserDocument> {
+    return await this.userModel
       .findOne({
         email,
       })
