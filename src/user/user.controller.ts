@@ -24,6 +24,5 @@ export class UserController {
   async getProfile(@Request() req) {
     const user = this.userService.findByEmail(req.user.email);
     return user;
-    // return req.user;
   }
 }
